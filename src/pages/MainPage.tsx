@@ -1,11 +1,16 @@
-import ScheduleCandidate from "../components/Schedule/ScheduleCandidate";
+import styled from "styled-components";
+import MainContainer from "../components/Main/MainContainer/MainContainer";
+import SideBar from "../components/Main/SideBar/SideBar";
 
 const MainPage = () => {
   return (
-    <div>
-      <ScheduleCandidate />
-    </div>
+    <MainPageWrapper>
+      <SideBar />
+      <MainContainer />
+    </MainPageWrapper>
   );
 };
+
+const MainPageWrapper = styled.div``;
 
 export default MainPage;
