@@ -1,7 +1,6 @@
 import { createContext } from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import CalenderBox from "./CalenderBox";
 import MenuContainer from "./MenuContainer";
 import ToggleContainer from "./ToggleContainer";
 
@@ -14,7 +13,7 @@ const MainContainer = () => {
       <MainContainerWrapper>
         <MenuContainer />
         <ToggleContainer />
-        <CalenderBox />
+        {/* 캘린더 */}
       </MainContainerWrapper>
     </MenuContext.Provider>
   );
