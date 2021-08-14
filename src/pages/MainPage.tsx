@@ -1,9 +1,11 @@
+import ScheduleCandidate from "../components/Schedule/ScheduleCandidate";
+
 const MainPage = () => {
   return (
     <div>
-      메인페이지 입니다.
+      <ScheduleCandidate />
     </div>
-  )
-}
+  );
+};
 
-export default MainPage
+export default MainPage;

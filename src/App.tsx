@@ -1,13 +1,12 @@
-import './App.css';
-import MainPage from './pages/MainPage';
+import "./App.css";
+import Root from "./Root";
 
 function App() {
   return (
     <div className="App">
-      <MainPage />
+      <Root />
     </div>
   );
-  
 }
 
 export default App;
