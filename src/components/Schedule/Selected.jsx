@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import { useEffect } from "react";
 
-const Selected = () => {
-  return <SelectedWrapper></SelectedWrapper>;
+const Selected = ({ temp }) => {
+  const data = temp.map((e) => <div>{e}</div>);
+  return <SelectedWrapper>{data}</SelectedWrapper>;
 };
 
 const SelectedWrapper = styled.div`

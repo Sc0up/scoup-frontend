@@ -3,14 +3,13 @@ import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import { DateContext } from "../../pages/SchedulePage";
 
-const Select = ({ time, setTime, range, setRange }) => {
+const Select = ({ resetSelect, temp, time, setTime, range, setRange }) => {
   const { date } = useContext(DateContext);
 
   const setData = (e) => {
-    console.log(e.id);
     setRange((info) => {
       let newObj = { ...info };
-      // if(newObj.start=== null || newObj.start > e.id) return newObj.start = e.id;
+      console.log(newObj);
       if (newObj.start === null || newObj.start > e.id) {
         newObj.start = e.id;
         newObj.end = e.id;
@@ -23,18 +22,9 @@ const Select = ({ time, setTime, range, setRange }) => {
       return newObj;
     });
   };
+
   const getTarget = (e) => {
-    // setTime((info) => {
-    //   let newArr = [...info];
-    //   newArr.map((data) => {
-    //     if (data.id === e.id) {
-    //       data.isSelect = true;
-    //     }
-    //   });
-    //   return newArr;
-    // });
     setData(e);
-    console.log(time);
   };
   const list = time.map((e) => (
     <List
@@ -47,9 +37,13 @@ const Select = ({ time, setTime, range, setRange }) => {
       <TimeList>{e.time}</TimeList>
     </List>
   ));
+
   return (
     <SelectWrapper>
-      <DateBox>{date}</DateBox>
+      <DateBox>
+        <div>{date}</div>
+        <button onClick={resetSelect}>초기화</button>
+      </DateBox>
       <ListBox>{list}</ListBox>
     </SelectWrapper>
   );
@@ -63,10 +57,7 @@ const SelectList = styled.li`
 
 const List = styled.div`
   background-color: ${({ rangeData, setData }) => {
-    console.log(rangeData, setData);
     let data = { ...rangeData };
-    console.log(data.start);
-    // if (data.start === null || data.end === null) return;
     if (data.start <= setData && data.end >= setData) return "yellow";
   }};
   display: flex;

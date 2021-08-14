@@ -23,21 +23,42 @@ const SelectSchedule = () => {
     { id: "1430", isEmpty: true, time: "14:30" },
   ];
   const [time, setTime] = useState(scheduleLine);
-  const rangeObj = { start: "null", end: "null" };
+  const rangeObj = { start: null, end: null };
   const [range, setRange] = useState(rangeObj);
   const [temp, setTemp] = useState([]);
+  console.log(temp);
   const addList = () => {
     let newRange = { ...range };
-    console.log(`${newRange.start}~${newRange.end}`);
+    let start = createTime(newRange.start);
+    let end = createTime(newRange.end);
+    let timeData = `${start}~${end}`;
+    setTemp([...temp, timeData]);
+    resetSelect();
   };
   const createTime = (data) => {
-    return data.splice(2, 0, ":");
+    return data.slice(0, 2) + ":" + data.slice(2, data.length);
+  };
+
+  const resetSelect = () => {
+    setRange((info) => {
+      let newObj = { ...info };
+      newObj.start = null;
+      newObj.end = null;
+      return newObj;
+    });
   };
   return (
     <SelectScheduleWrapper>
-      <Select time={time} setTime={setTime} range={range} setRange={setRange} />
+      <Select
+        resetSelect={resetSelect}
+        temp={temp}
+        time={time}
+        setTime={setTime}
+        range={range}
+        setRange={setRange}
+      />
       <AddButton onClick={addList}>추가</AddButton>
-      <Selected />
+      <Selected temp={temp} />
     </SelectScheduleWrapper>
   );
 };
