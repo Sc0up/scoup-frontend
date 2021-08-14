@@ -32,8 +32,17 @@ const SelectSchedule = () => {
     let start = createTime(newRange.start);
     let end = createTime(newRange.end);
     let timeData = `${start}~${end}`;
-    setTemp([...temp, timeData]);
+    setTimeArr(timeData);
     resetSelect();
+  };
+  const setTimeArr = (timeData) => {
+    let newArr = [...temp];
+    let newSet = new Set(newArr);
+    if (!newSet.has(timeData)) {
+      setTemp([...temp, timeData]);
+    } else {
+      return alert("이미 추가한 시간입니다.");
+    }
   };
   const createTime = (data) => {
     return data.slice(0, 2) + ":" + data.slice(2, data.length);
