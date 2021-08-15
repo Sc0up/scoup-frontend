@@ -1,7 +1,11 @@
 import styled from "styled-components";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { DateContext } from "../../pages/SchedulePage";
 
-const Selected = ({ temp, setTemp }) => {
+const Selected = () => {
+  const { store } = useContext(DateContext);
+  const { tempData } = store;
+  const [temp, setTemp] = tempData;
   const removeTarget = (time) => {
     let newArr = [...temp];
     const filterData = newArr.filter((data) => data !== time);

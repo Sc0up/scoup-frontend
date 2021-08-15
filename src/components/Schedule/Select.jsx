@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import { DateContext } from "../../pages/SchedulePage";
 
-const Select = ({ resetSelect, temp, time, setTime, range, setRange }) => {
+const Select = ({ resetSelect, time, range, setRange }) => {
   const { date } = useContext(DateContext);
 
   const setData = (e) => {

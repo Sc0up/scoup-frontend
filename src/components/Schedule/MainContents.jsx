@@ -3,7 +3,9 @@ import styled from "styled-components";
 import ScheduleCandidate from "./ScheduleCandidate";
 import { DateContext } from "../../pages/SchedulePage";
 const MainContents = () => {
-  const { date, setDate } = useContext(DateContext);
+  const { store } = useContext(DateContext);
+  const { dateData } = store;
+  const [date, setDate] = dateData;
   const getValue = (e) => {
     setDate(e);
   };

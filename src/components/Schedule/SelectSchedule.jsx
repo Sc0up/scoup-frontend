@@ -6,6 +6,9 @@ import Select from "./Select";
 import Selected from "./Selected";
 
 const SelectSchedule = () => {
+  const { store } = useContext(DateContext);
+  const { tempData } = store;
+  const [temp, setTemp] = tempData;
   const scheduleLine = [
     { id: "0800", isEmpty: true, time: "08:00" },
     { id: "0830", isEmpty: true, time: "08:30" },
@@ -25,7 +28,7 @@ const SelectSchedule = () => {
   const [time, setTime] = useState(scheduleLine);
   const rangeObj = { start: null, end: null };
   const [range, setRange] = useState(rangeObj);
-  const [temp, setTemp] = useState([]);
+  // const [temp, setTemp] = useState([]);
   console.log(temp);
   const addList = () => {
     let newRange = { ...range };
@@ -60,14 +63,12 @@ const SelectSchedule = () => {
     <SelectScheduleWrapper>
       <Select
         resetSelect={resetSelect}
-        temp={temp}
         time={time}
-        setTime={setTime}
         range={range}
         setRange={setRange}
       />
       <AddButton onClick={addList}>추가</AddButton>
-      <Selected setTemp={setTemp} temp={temp} />
+      <Selected />
     </SelectScheduleWrapper>
   );
 };
