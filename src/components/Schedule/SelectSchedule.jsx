@@ -67,7 +67,7 @@ const SelectSchedule = () => {
         setRange={setRange}
       />
       <AddButton onClick={addList}>추가</AddButton>
-      <Selected temp={temp} />
+      <Selected setTemp={setTemp} temp={temp} />
     </SelectScheduleWrapper>
   );
 };

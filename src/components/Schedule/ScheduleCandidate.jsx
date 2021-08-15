@@ -18,7 +18,7 @@ const Title = styled.div`
 const SelectedSchedule = styled.div``;
 const ScheduleCandidateWrapper = styled.div`
   padding: 10px;
-  width: 40%;
+  width: 500px;
   height: 1000px;
   background-color: beige;
 `;
