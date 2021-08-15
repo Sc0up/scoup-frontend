@@ -1,9 +1,13 @@
 import styled from "styled-components";
-import { useState } from "react";
 import DefaultBox from "./DefaultBox";
 import SelectSchedule from "./SelectSchedule";
+import { useContext } from "react";
+import { DateContext } from "../../pages/SchedulePage";
 
-const ScheduleCandidate = ({ date }) => {
+const ScheduleCandidate = () => {
+  const { store } = useContext(DateContext);
+  const { dateData } = store;
+  const [date] = dateData;
   return (
     <ScheduleCandidateWrapper>
       <Title>시간설정</Title>

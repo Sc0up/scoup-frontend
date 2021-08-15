@@ -1,15 +1,12 @@
 import { useContext } from "react";
-import { useState } from "react";
 import styled from "styled-components";
 import { DateContext } from "../../pages/SchedulePage";
 
 const Header = () => {
   const { store } = useContext(DateContext);
   const { titleData } = store;
-  const [title, setTitle] = titleData;
-  // console.log()
+  const [setTitle] = titleData;
   const getTitle = (e) => {
-    // console.log(e.target.value);
     setTitle(e.target.value);
   };
   return (

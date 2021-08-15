@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import styled from "styled-components";
 import { DateContext } from "../../pages/SchedulePage";
@@ -7,8 +7,9 @@ import Selected from "./Selected";
 
 const SelectSchedule = () => {
   const { store } = useContext(DateContext);
-  const { tempData } = store;
+  const { tempData, dateData } = store;
   const [temp, setTemp] = tempData;
+  const [date, setDate] = dateData;
   const scheduleLine = [
     { id: "0800", isEmpty: true, time: "08:00" },
     { id: "0830", isEmpty: true, time: "08:30" },
@@ -28,8 +29,6 @@ const SelectSchedule = () => {
   const [time, setTime] = useState(scheduleLine);
   const rangeObj = { start: null, end: null };
   const [range, setRange] = useState(rangeObj);
-  // const [temp, setTemp] = useState([]);
-  console.log(temp);
   const addList = () => {
     let newRange = { ...range };
     let start = createTime(newRange.start);
@@ -39,10 +38,11 @@ const SelectSchedule = () => {
     resetSelect();
   };
   const setTimeArr = (timeData) => {
-    let newArr = [...temp];
+    let data = { dateValue: date, time: timeData };
+    let newArr = [...temp].map((e) => JSON.stringify(e));
     let newSet = new Set(newArr);
-    if (!newSet.has(timeData)) {
-      setTemp([...temp, timeData]);
+    if (!newSet.has(JSON.stringify(data))) {
+      setTemp([...temp, data]);
     } else {
       return alert("이미 추가한 시간입니다.");
     }

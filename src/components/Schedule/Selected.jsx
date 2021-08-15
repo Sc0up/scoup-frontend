@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { DateContext } from "../../pages/SchedulePage";
 
 const Selected = () => {
@@ -8,20 +8,27 @@ const Selected = () => {
   const [temp, setTemp] = tempData;
   const removeTarget = (time) => {
     let newArr = [...temp];
-    const filterData = newArr.filter((data) => data !== time);
+    const filterData = newArr.filter((data) => data.time !== time);
     setTemp(filterData);
-
-    console.log(time);
   };
   const data = temp.map((time) => (
     <SelectedTime>
-      <SelectedData>{time}</SelectedData>
+      <SelectedData>
+        <div>{time.dateValue}</div>
+        <div>{time.time}</div>
+      </SelectedData>
       <RemoveButton onClick={() => removeTarget(time)}>-</RemoveButton>
     </SelectedTime>
   ));
   return <SelectedWrapper>{data}</SelectedWrapper>;
 };
-const SelectedData = styled.div``;
+const SelectedData = styled.div`
+  display: flex;
+  /* justify-content: space-between; */
+  & > div {
+    margin-right: 20px;
+  }
+`;
 const RemoveButton = styled.button``;
 const SelectedTime = styled.div`
   background-color: white;

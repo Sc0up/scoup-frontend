@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { DateContext } from "../../pages/SchedulePage";
-
 const CreateButton = () => {
   const { store } = useContext(DateContext);
-  const { tempData, titleData, dateData } = store;
+  const { tempData, titleData, dateData, isVisible } = store;
   const [temp] = tempData;
   const [title] = titleData;
   const [date] = dateData;
+  const [isComponentVisible, setIsComponentVisible] = isVisible;
   const checkPage = () => {
     let newTemp = [...temp];
     if (title === "") {
@@ -17,10 +17,8 @@ const CreateButton = () => {
     } else if (newTemp.length === 0) {
       alert("일정을 추가해주세요");
     } else {
-      console.log("성공");
-      return true;
+      setIsComponentVisible(!isComponentVisible);
     }
-    console.log(title && date && temp);
     return false;
   };
 
@@ -35,14 +33,12 @@ const CreateButton = () => {
 const CreateBtn = styled.button`
   color: ${({ temp, date, title }) => {
     let newArr = [...temp];
-    console.log(title);
     if (newArr.length !== 0 && date !== null && title !== "") {
       return "black";
     } else return "gray";
   }};
   font-size: 30px;
   padding: 10px;
-  /* background-color: rebeccapurple; */
 `;
 
 const CreateButtonWrapper = styled.div``;

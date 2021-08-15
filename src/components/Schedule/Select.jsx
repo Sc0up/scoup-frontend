@@ -1,15 +1,14 @@
 import styled from "styled-components";
-import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import { DateContext } from "../../pages/SchedulePage";
 
 const Select = ({ resetSelect, time, range, setRange }) => {
-  const { date } = useContext(DateContext);
-
+  const { store } = useContext(DateContext);
+  const { dateData } = store;
+  const [date] = dateData;
   const setData = (e) => {
     setRange((info) => {
       let newObj = { ...info };
-      console.log(newObj);
       if (newObj.start === null || newObj.start > e.id) {
         newObj.start = e.id;
         newObj.end = e.id;
