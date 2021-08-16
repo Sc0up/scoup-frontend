@@ -26,7 +26,11 @@ const Title = styled.div`
   font-size: 25px;
   margin-bottom: 10px;
 `;
-const Cnt = styled.div``;
+const Cnt = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 20px;
+`;
 const List = styled.div`
   background-color: whitesmoke;
   margin: 10px 0;
@@ -39,7 +43,7 @@ const List = styled.div`
 const Schedule = styled.div``;
 const ScheduleListWrapper = styled.div`
   background-color: gray;
-  padding: 20px;
+  padding: 10px;
 `;
 
 export default ScheduleList;
