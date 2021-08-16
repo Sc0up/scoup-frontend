@@ -8,7 +8,7 @@ const Selected = () => {
   const [temp, setTemp] = tempData;
   const removeTarget = (time) => {
     let newArr = [...temp];
-    const filterData = newArr.filter((data) => data.time !== time);
+    const filterData = newArr.filter((data) => data !== time);
     setTemp(filterData);
   };
   const data = temp.map((time) => (

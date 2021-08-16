@@ -58,7 +58,9 @@ const List = styled.div`
   background-color: ${({ rangeData, setData }) => {
     let data = { ...rangeData };
     if (data.start <= setData && data.end >= setData) return "yellow";
+    else return "white";
   }};
+  border: 1px solid black;
   display: flex;
   padding: 5px;
 `;

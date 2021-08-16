@@ -22,7 +22,7 @@ const SchedulePage = () => {
   };
   return (
     <DateContext.Provider value={{ store }}>
-      <SchedulePageWrapper>
+      <SchedulePageWrapper isComponentVisible={isComponentVisible}>
         <Header />
         <MainContents />
         <CreateButton />
@@ -32,6 +32,12 @@ const SchedulePage = () => {
   );
 };
 const SchedulePageWrapper = styled.div`
+  /* background-color: ${({ isComponentVisible }) => {
+    if (isComponentVisible !== true) return "black";
+  }};
+  opacity: ${({ isComponentVisible }) => {
+    if (isComponentVisible !== true) return "0.6";
+  }}; */
   position: relative;
 `;
 

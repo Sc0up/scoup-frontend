@@ -5,7 +5,7 @@ import { DateContext } from "../../pages/SchedulePage";
 const Header = () => {
   const { store } = useContext(DateContext);
   const { titleData } = store;
-  const [setTitle] = titleData;
+  const [, setTitle] = titleData;
   const getTitle = (e) => {
     setTitle(e.target.value);
   };
