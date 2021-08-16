@@ -26,11 +26,12 @@ const SelectSchedule = () => {
     { id: "1400", isEmpty: true, time: "14:00" },
     { id: "1430", isEmpty: true, time: "14:30" },
   ];
-  const [time, setTime] = useState(scheduleLine);
+  const [time] = useState(scheduleLine);
   const rangeObj = { start: null, end: null };
   const [range, setRange] = useState(rangeObj);
   const addList = () => {
     let newRange = { ...range };
+    if (newRange.start === null) return alert("시간을 선택해주세요");
     let start = createTime(newRange.start);
     let end = createTime(newRange.end);
     let timeData = `${start}~${end}`;
