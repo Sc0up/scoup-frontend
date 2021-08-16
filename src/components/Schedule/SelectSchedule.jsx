@@ -9,7 +9,7 @@ const SelectSchedule = () => {
   const { store } = useContext(DateContext);
   const { tempData, dateData } = store;
   const [temp, setTemp] = tempData;
-  const [date, setDate] = dateData;
+  const [date] = dateData;
   const scheduleLine = [
     { id: "0800", isEmpty: true, time: "08:00" },
     { id: "0830", isEmpty: true, time: "08:30" },

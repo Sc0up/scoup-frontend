@@ -6,7 +6,6 @@ import ScheduleList from "./ScheduleModal/ScheduleList";
 import { Link } from "react-router-dom";
 const ScheduleModal = () => {
   const { store } = useContext(DateContext);
-  console.log(store);
   const { titleData, isVisible } = store;
   const [title] = titleData;
   const [, setIsComponentVisible] = isVisible;
@@ -70,7 +69,6 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-const MainContainer = styled.div``;
 const Footer = styled.div`
   padding: 10px;
   font-size: 20px;

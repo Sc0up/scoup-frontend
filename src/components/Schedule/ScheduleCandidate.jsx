@@ -19,7 +19,6 @@ const ScheduleCandidate = () => {
 const Title = styled.div`
   font-size: 30px;
 `;
-const SelectedSchedule = styled.div``;
 const ScheduleCandidateWrapper = styled.div`
   padding: 10px;
   width: 500px;

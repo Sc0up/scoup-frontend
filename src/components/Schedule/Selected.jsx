@@ -11,9 +11,9 @@ const Selected = () => {
     const filterData = newArr.filter((data) => data !== time);
     setTemp(filterData);
   };
-  const data = temp.map((time) => (
-    <SelectedTime>
-      <SelectedData>
+  const data = temp.map((time, index) => (
+    <SelectedTime key={index}>
+      <SelectedData key={index}>
         <div>{time.dateValue}</div>
         <div>{time.time}</div>
       </SelectedData>

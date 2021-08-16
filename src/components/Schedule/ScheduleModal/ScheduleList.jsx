@@ -8,7 +8,7 @@ const ScheduleList = () => {
   const [temp] = tempData;
   const newTemp = [...temp];
   const list = temp.map((data, index) => (
-    <List>
+    <List key={index}>
       <div>{data.dateValue}</div>
       <div>{data.time}</div>
     </List>

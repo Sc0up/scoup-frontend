@@ -1,10 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { MenuContext } from "./MainContainer";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const MenuContainer = () => {
-  const [addSchedule, setAddSchedule] = useState(false);
   const { menu, setMenu } = useContext(MenuContext);
   console.log(menu, setMenu);
   return (
@@ -16,11 +15,7 @@ const MenuContainer = () => {
     </MenuContainerWrapper>
   );
 };
-const ScheduleButton = styled.button`
-  background-color: ${({ addSchedule }) => {
-    if (addSchedule === true) return "blue";
-  }};
-`;
+const ScheduleButton = styled.button``;
 
 const MenuContainerWrapper = styled.div`
   padding: 10px;
