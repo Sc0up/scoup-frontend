@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DateContext } from "../../pages/SchedulePage";
 
 const Select = ({ resetSelect, time, range, setRange }) => {
@@ -36,11 +36,14 @@ const Select = ({ resetSelect, time, range, setRange }) => {
       <TimeList>{e.time}</TimeList>
     </List>
   ));
-
+  const createDate = () => {
+    if (date === null) return;
+    return `${date.date.year}년${date.date.month}월${date.date.date}일`;
+  };
   return (
     <SelectWrapper>
       <DateBox>
-        <div>{date}</div>
+        <div>{createDate()}</div>
         <button onClick={resetSelect}>초기화</button>
       </DateBox>
       <ListBox>{list}</ListBox>
