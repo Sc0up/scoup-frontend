@@ -34,12 +34,14 @@ const SelectSchedule = () => {
     if (newRange.start === null) return alert("시간을 선택해주세요");
     let start = createTime(newRange.start);
     let end = createTime(newRange.end);
+    if (start === end) return alert("종료시간을 선택해주세요");
+    console.log(start, end);
     let timeData = `${start}~${end}`;
     setTimeArr(timeData);
     resetSelect();
   };
   const setTimeArr = (timeData) => {
-    let data = { dateValue: date, time: timeData };
+    let data = { dateValue: date.date.year, time: timeData };
     let newArr = [...temp].map((e) => JSON.stringify(e));
     let newSet = new Set(newArr);
     if (!newSet.has(JSON.stringify(data))) {
