@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { GROUPLIST_WIDTH } from '../../../style/constants';
 import Group from './Group';
 
 export default function GroupList() {
@@ -35,9 +36,10 @@ export default function GroupList() {
 }
 
 const GroupListContainer = styled.aside`
-  width: 252px;
+  width: ${GROUPLIST_WIDTH}px;
   height: 100%;
   background-color: #e9e9e9;
+  z-index: -1;
 `;
 
 const Title = styled.h3`

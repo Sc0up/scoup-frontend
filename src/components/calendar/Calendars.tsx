@@ -1,9 +1,8 @@
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import { CALENDAR_GAP } from '../../style/constants';
 import Calendar from './Calendar';
-import { getCalendarData } from './getCalendarData';
 import { calendarsDataState, monthAtom, yearAtom } from './states';
-import { Month } from './types';
 
 export default function Calendars() {
   const [year, setYear] = useRecoilState(yearAtom);
@@ -27,14 +26,18 @@ export default function Calendars() {
   );
 }
 
-const CalendarsContainer = styled.ul`
-  all: unset;
-  /* display: flex; */
-  width: 3150px;
-  transform: translateX(-1050px);
+const ViewArea = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  /* overflow: hidden; */
 `;
 
-const ViewArea = styled.div`
-  width: 1050px;
-  /* overflow: hidden; */
+const CalendarsContainer = styled.ul`
+  all: unset;
+  /* gap: ${CALENDAR_GAP}px; */
+  display: flex;
+  width: calc(300% + ${CALENDAR_GAP * 2}px);
+  height: 100%;
+  transform: translateX(calc(-${100 / 3}%));
 `;

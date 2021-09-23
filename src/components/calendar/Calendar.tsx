@@ -20,4 +20,8 @@ export default function Calendar({
 const CalendarWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: calc(100% / 3);
+  height: 100%;
+  background-color: ${({ theme }) => theme.color.mono.gray010};
+  box-sizing: border-box;
 `;

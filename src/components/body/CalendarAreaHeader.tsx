@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { CALENDAR_AREA_HEADER_HEIGHT } from '../../style/constants';
 
 export default function CalendarAreaHeader() {
   return (
@@ -21,7 +22,7 @@ const CalendarAreaHeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 64px;
+  height: ${CALENDAR_AREA_HEADER_HEIGHT}px;
   padding: 24px 18px;
 `;
 
@@ -32,7 +33,7 @@ const Left = styled.div`
   .title {
     display: flex;
     align-items: center;
-    font-size: 24px;
+    font-size: ${({ theme }) => theme.fontSize.M};
     font-weight: bold;
   }
 `;

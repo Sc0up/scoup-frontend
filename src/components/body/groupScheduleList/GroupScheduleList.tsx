@@ -12,8 +12,9 @@ export default function GroupScheduleList() {
 }
 
 const GroupScheduleListContainer = styled.aside`
+  display: none;
   position: absolute;
-  width: 486px;
+  width: fit-content;
   height: 100%;
   background-color: #fcfcfc;
   top: 0;
