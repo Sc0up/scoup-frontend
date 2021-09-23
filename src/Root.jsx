@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SchedulePage from "./pages/SchedulePage";
-import MainPage from "./pages/MainPage";
 
 const Root = () => {
   return (
@@ -15,8 +14,7 @@ const RootComponent = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/mainPage" component={MainPage} exact />
-        <Route path="/schedulePage" component={SchedulePage} />
+        <Route path="/schedulePage" component={SchedulePage} exact />
       </Switch>
     </Router>
   );
