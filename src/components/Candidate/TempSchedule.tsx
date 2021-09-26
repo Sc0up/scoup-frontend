@@ -8,6 +8,10 @@ import Settings from "./Settings";
 export interface IRange {
   value: Date;
   title: string;
+  years: number[];
+  months: number[];
+  dates: number[];
+  time: string;
 }
 // export interface IObj {
 //   id:
@@ -16,16 +20,22 @@ const TempSchedule = () => {
   const date = new Date();
   const start = new Date();
   const end = new Date();
+  const lastDate = new Date(start.getFullYear(), start.getMonth(), 0);
   end.setHours(date.getHours() + 1);
-  const [dateRange, setDateRange] = useState<IRange[]>([
-    { title: "시작", value: start },
-    { title: "종료", value: end },
-  ]);
+  // const [dateRange, setDateRange] = useState<IRange[]>([
+  const [startDate, setStartDate] = useState<Date>(start);
+  const [endDate, setEndDate] = useState<Date>(end);
+  // console.log(dateRange);
 
-  console.log(dateRange[0].value.getHours());
+  // console.log(dateRange[0].value.getHours());
   return (
     <TempScheduleWrapper>
-      <Settings dateRange={dateRange} setDateRange={setDateRange} />
+      <Settings
+        startDate={startDate}
+        setStartDate={setStartDate}
+        endDate={endDate}
+        setEndDate={setEndDate}
+      />
       <ScheduleSetting />
       <ScheduleCandidate />
     </TempScheduleWrapper>

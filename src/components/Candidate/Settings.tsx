@@ -1,108 +1,87 @@
-import { Dispatch, useState } from "react";
+import { AnyMxRecord } from "dns";
+import { ChangeEvent, Dispatch, useState } from "react";
 import styled from "styled-components";
+import EndDate from "./EndDate";
+import StartDate from "./StartDate";
 import { IRange } from "./TempSchedule";
 // import { IRange } from "./TempSchedule";
 
-interface ISettings {
-  dateRange: IRange[];
-  setDateRange: Dispatch<IRange[]>;
+export interface ISettings {
+  startDate: Date;
+  endDate: Date;
+  setStartDate: Dispatch<Date>;
+  setEndDate: Dispatch<Date>;
 }
-interface IDateOption {
+export interface IDateOption {
   title: string;
   year: number[];
   month: number[];
   date: number[];
 }
-const Settings = ({ dateRange, setDateRange }: ISettings) => {
-  const lastDate = new Date(
-    dateRange[0].value.getFullYear(),
-    dateRange[0].value.getMonth() + 1,
-    0
-  );
-  console.log(lastDate);
-  console.log(dateRange[0].value.getFullYear());
+const Settings = ({
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
+}: ISettings) => {
+  const lastDate = new Date(startDate.getFullYear(), startDate.getMonth(), 0);
+  const [startOptions, setStartOptions] = useState({
+    years: Array.from(
+      new Array(20),
+      (val, index) => index + startDate.getFullYear()
+    ),
+    months: Array.from(
+      { length: 12 - startDate.getMonth() },
+      (_, i) => i + startDate.getMonth() + 1
+    ),
+    dates: Array.from(
+      { length: lastDate.getDate() - startDate.getDate() },
+      (_, i) => i + startDate.getDate()
+    ),
+  });
+  const [endOptions, setEndOptions] = useState({
+    years: Array.from(
+      new Array(20),
+      (val, index) => index + endDate.getFullYear()
+    ),
+    months: Array.from(
+      { length: 12 - endDate.getMonth() },
+      (_, i) => i + endDate.getMonth() + 1
+    ),
+    dates: Array.from(
+      { length: lastDate.getDate() - endDate.getDate() },
+      (_, i) => i + endDate.getDate()
+    ),
+  });
+  const handleDate = (e: any) => {
+    let curr = e.target.value;
+    // setDateRange(
+    //   dateRange.map((e) => {
+    //     console.log(e.value);
+    //     e.value.setFullYear(curr);
+    //     return e;
+    //   })
+    // );
+  };
 
-  const [dateOption, setDateOption] = useState<IDateOption[]>([
-    {
-      title: "시작",
-      year: Array.from(
-        new Array(20),
-        (val, index) => index + dateRange[0].value.getFullYear()
-      ),
-      month: Array.from(
-        { length: 12 - dateRange[0].value.getMonth() },
-        (_, i) => i + dateRange[0].value.getMonth() + 1
-      ),
-      date: Array.from(
-        { length: lastDate.getDate() - dateRange[0].value.getDate() + 1 },
-        (_, i) => i + dateRange[0].value.getDate()
-      ),
-    },
-    {
-      title: "종료",
-      year: Array.from(
-        new Array(20),
-        (val, index) => index + dateRange[0].value.getFullYear()
-      ),
-      month: Array.from(
-        { length: 12 - dateRange[0].value.getMonth() },
-        (_, i) => i + dateRange[0].value.getMonth() + 1
-      ),
-      date: Array.from(
-        { length: lastDate.getDate() - dateRange[0].value.getDate() + 1 },
-        (_, i) => i + dateRange[0].value.getDate()
-      ),
-    },
-  ]);
-  console.log(dateOption);
-  const handleYear = () => {};
-  const handleMonth = () => {};
-  const handleDate = () => {};
-  const list = dateOption.map((e) => (
-    <Line>
-      <LineTitle>{e.title}</LineTitle>
-      <LineContent>
-        <Each>
-          <select onChange={handleYear} value={e.year[0]}>
-            {e.year.map((year) => (
-              <option value={year} key={year}>
-                {year}
-              </option>
-            ))}
-          </select>
-          <Str>년</Str>
-        </Each>
-        <Each>
-          <select onChange={handleMonth} value={e.month[0]}>
-            {e.month.map((month) => (
-              <option value={month} key={month}>
-                {month}
-              </option>
-            ))}
-          </select>
-          <Str>월</Str>
-        </Each>
-        <Each>
-          <select onChange={handleDate} value={e.date[0]}>
-            {e.date.map((date) => (
-              <option value={date} key={date}>
-                {date}
-              </option>
-            ))}
-          </select>
-          <Str>일</Str>
-        </Each>
-        <Each>
-          <input type="number" />
-        </Each>
-      </LineContent>
-    </Line>
-  ));
   return (
     <SettingsWrapper>
       <Title>일정 설정</Title>
       <Container>
-        <ListWrapper>{list}</ListWrapper>
+        <ListWrapper>
+          <StartDate
+            startDate={startDate}
+            setStartDate={setStartDate}
+            endDate={endDate}
+            setEndDate={setEndDate}
+          />
+          <EndDate
+            startDate={startDate}
+            setStartDate={setStartDate}
+            endDate={endDate}
+            setEndDate={setEndDate}
+          />
+        </ListWrapper>
         <Btn>후보추가</Btn>
       </Container>
     </SettingsWrapper>
@@ -110,10 +89,7 @@ const Settings = ({ dateRange, setDateRange }: ISettings) => {
 };
 const ListWrapper = styled.div``;
 const Str = styled.div`
-  margin: 0 5px;
   padding: 5px;
-  border-radius: 5px;
-  background-color: white;
 `;
 const Each = styled.div`
   display: flex;
