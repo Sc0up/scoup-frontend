@@ -1,9 +1,17 @@
 import styled from 'styled-components';
+import ScheduleBlock from './ScheduleBlock';
 
-export default function Day({ key, day }: { key: number; day: string }) {
+export default function Day({
+  day,
+  schedulesOnDay,
+}: {
+  day: string;
+  schedulesOnDay: any;
+}) {
   return (
     <DayWrapper>
       <DayNumber>{day}</DayNumber>
+      <ScheduleBlock />
     </DayWrapper>
   );
 }

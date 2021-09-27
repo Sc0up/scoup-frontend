@@ -2,7 +2,12 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { CALENDAR_GAP } from '../../style/constants';
 import Calendar from './Calendar';
-import { calendarsDataState, monthAtom, yearAtom } from './states';
+import {
+  calendarsDataState,
+  monthAtom,
+  schedulesDataAtom,
+  yearAtom,
+} from './states';
 
 export default function Calendars() {
   const [year, setYear] = useRecoilState(yearAtom);
@@ -10,6 +15,9 @@ export default function Calendars() {
   const calendarsData = useRecoilValue(calendarsDataState);
   console.log(calendarsData);
   let monthControl = -1;
+
+  const schedulesData = useRecoilValue(schedulesDataAtom);
+  console.log('스케줄 데이터', schedulesData);
 
   return (
     <ViewArea>
@@ -19,6 +27,7 @@ export default function Calendars() {
             key={i}
             calendarData={calendarData}
             dateObj={new Date(year, month + monthControl++)}
+            scheduleData={schedulesData[i]}
           />
         ))}
       </CalendarsContainer>

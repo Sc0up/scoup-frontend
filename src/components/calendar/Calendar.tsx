@@ -5,14 +5,29 @@ import CalendarHeader from './CalendarHeader';
 export default function Calendar({
   calendarData,
   dateObj,
+  scheduleData,
 }: {
   calendarData: string[][];
   dateObj: Date;
+  scheduleData: any;
 }) {
+  const getYearMonthText = (dateObj: Date) => {
+    const yyyy = dateObj.getFullYear() + '';
+    const realMonth = dateObj.getMonth() + 1;
+    const mm = realMonth < 10 ? '0' + realMonth : realMonth + '';
+
+    return `${yyyy}-${mm}`;
+  };
+  console.log(getYearMonthText(dateObj));
+
   return (
     <CalendarWrapper>
       <CalendarHeader dateObj={dateObj} />
-      <CalendarBody calendarData={calendarData} />
+      <CalendarBody
+        calendarData={calendarData}
+        scheduleData={scheduleData}
+        yearMonth={getYearMonthText(dateObj)}
+      />
     </CalendarWrapper>
   );
 }

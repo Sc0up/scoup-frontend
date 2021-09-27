@@ -5,17 +5,29 @@ import DayNames from './DayNames';
 
 export default function CalendarBody({
   calendarData,
+  scheduleData,
+  yearMonth,
 }: {
   calendarData: string[][];
+  scheduleData: any;
+  yearMonth: string;
 }) {
+  console.log('🌱 ', calendarData);
+
   return (
     <CalendarBodyWrapper>
       <DayNames />
       {calendarData.map((week, i) => (
         <Week key={i}>
-          {week.map((day, i) => (
-            <Day key={i} day={day} />
-          ))}
+          {week.map((day, i) => {
+            let formattedDay = +day < 10 ? '0' + day : day;
+            if (day === '') formattedDay = i + day;
+            const dayKey = `${yearMonth}-${formattedDay}`;
+            const { [dayKey]: schedulesOnDay } = scheduleData;
+            return (
+              <Day key={dayKey} day={day} schedulesOnDay={schedulesOnDay} />
+            );
+          })}
         </Week>
       ))}
     </CalendarBodyWrapper>
