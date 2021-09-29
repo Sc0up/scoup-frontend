@@ -1,9 +1,13 @@
+import Body from '../components/body/Body';
+import Header from '../components/header/Header';
+
 const MainPage = () => {
   return (
-    <div>
-      메인페이지 입니다.
-    </div>
-  )
-}
+    <>
+      <Header />
+      <Body />
+    </>
+  );
+};
 
-export default MainPage
+export default MainPage;
