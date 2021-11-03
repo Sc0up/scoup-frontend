@@ -6,10 +6,11 @@ interface ISelectFormat {
   range?: number[];
   value?: number;
 }
+
 const SelectFormat = ({ year, value, range }: ISelectFormat) => {
   return (
     <SelectFormatWrapper>
-      {year && <SelectHours value={value} />}
+      {year && <SelectHours value={value} range={range} />}
     </SelectFormatWrapper>
   );
 };
