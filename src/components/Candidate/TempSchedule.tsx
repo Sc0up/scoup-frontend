@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { createContext, useState } from "react";
 import AddButton from "./AddButton";
 import ScheduleCandidate from "./ScheduleCandidate";
 import ScheduleSetting from "./ScheduleSetting";
@@ -16,29 +16,35 @@ export interface IRange {
 // export interface IObj {
 //   id:
 // }
+export interface ITemp {
+  start: Date;
+  end: Date;
+}
+export interface ITempContent {
+  tempCandidate: any;
+  setTempCandidate: (c: any) => void;
+}
+export const TempContext = createContext<ITempContent>({
+  tempCandidate: [],
+  setTempCandidate: () => {},
+});
 const TempSchedule = () => {
   const date = new Date();
-  const start = new Date();
   const end = new Date();
-  const lastDate = new Date(start.getFullYear(), start.getMonth(), 0);
-  end.setHours(date.getHours() + 1);
-  // const [dateRange, setDateRange] = useState<IRange[]>([
-  const [startDate, setStartDate] = useState<Date>(start);
-  const [endDate, setEndDate] = useState<Date>(end);
-  // console.log(dateRange);
-
-  // console.log(dateRange[0].value.getHours());
+  const start = new Date();
+  const lastDate = new Date(date.getFullYear(), start.getMonth(), 0);
+  const [tempCandidate, setTempCandidate] = useState([]);
+  const findSum = (a: string, b: string) => {
+    return a + b;
+  };
   return (
-    <TempScheduleWrapper>
-      <Settings
-        startDate={startDate}
-        setStartDate={setStartDate}
-        endDate={endDate}
-        setEndDate={setEndDate}
-      />
-      <ScheduleSetting />
-      <ScheduleCandidate />
-    </TempScheduleWrapper>
+    <TempContext.Provider value={{ tempCandidate, setTempCandidate }}>
+      <TempScheduleWrapper>
+        <Settings />
+        {/* <ScheduleSetting /> */}
+        <ScheduleCandidate />
+      </TempScheduleWrapper>
+    </TempContext.Provider>
   );
 };
 

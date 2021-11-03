@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import CandidateContent from "./CandidateContent";
 
 const ScheduleCandidate = () => {
   return (
@@ -7,7 +8,7 @@ const ScheduleCandidate = () => {
         <Title>일정 후보</Title>
         <ResetBtn>초기화</ResetBtn>
       </Header>
-      <Content></Content>
+      <CandidateContent />
     </ScheduleCandidateWrapper>
   );
 };

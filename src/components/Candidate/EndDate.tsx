@@ -25,16 +25,16 @@ const EndDate = ({
       (_, i) => i + endDate.getDate()
     ),
   });
+  // const handleEndDate = () => {};
+  const handleEndYear = () => {};
+  const handleEndMonth = () => {};
   const handleEndDate = () => {};
   return (
     <EndDateWrapper>
       <LineTitle>종료</LineTitle>
       <LineContent>
         <Each>
-          <select
-            onChange={(e: any) => handleEndDate}
-            value={endDate.getFullYear()}
-          >
+          <select onChange={handleEndYear} value={endDate.getFullYear()}>
             {endOptions.years.map((year) => (
               <option value={year} key={year}>
                 {year}
@@ -44,7 +44,7 @@ const EndDate = ({
           <Str>년</Str>
         </Each>
         <Each>
-          <select onChange={handleEndDate} value={endDate.getFullYear()}>
+          <select onChange={handleEndMonth} value={endDate.getFullYear()}>
             {endOptions.months.map((month) => (
               <option value={month} key={month}>
                 {month}
@@ -65,7 +65,7 @@ const EndDate = ({
         </Each>
         <Each>
           <input
-            value={`${endDate.getHours()}:${endDate.getMinutes()}`}
+            defaultValue={`${endDate.getHours()}:${endDate.getMinutes()}`}
             type="text"
           />
         </Each>
