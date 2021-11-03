@@ -14,12 +14,16 @@ const SelectHours = ({ value, range }: ISelectHours) => {
     }
     return options;
   };
-  const [hoursValue, Sethours] = useState(value);
-  const [hourOptions, SetHourOptions] = useState(getRangeArray(range));
+  const [hoursValue, setHours] = useState(value);
+  const [hourOptions, setHourOptions] = useState(getRangeArray(range));
+  const handleYear = (e: any) => {
+    const targetValue = e.target.value;
+    setHours(targetValue);
+  };
   return (
     <SelectHoursWrapper>
       {hourOptions !== undefined && (
-        <HourSelect value={hoursValue}>
+        <HourSelect onChange={handleYear} value={hoursValue}>
           {hourOptions.map((year) => (
             <option value={year} key={year}>
               {year}
