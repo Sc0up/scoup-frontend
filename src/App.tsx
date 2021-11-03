@@ -1,3 +1,8 @@
+import { ThemeProvider } from 'styled-components';
+import { RecoilRoot } from 'recoil';
+import { Theme } from './style/theme';
+import GlobalStyle from './style/globalStyle';
+
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -5,24 +10,25 @@ import {
   Route,
 } from "react-router-dom";
 
-import MainPage from './pages/MainPage';
-import SigninPage from './pages/SigninPage';
-
-
+import Pages from './pages';
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-      {/* <MainPage /> */}
-      <Switch>
-        <Route path="/" exact component={MainPage} />
-        <Route path="/signin" exact component={SigninPage} />
-      </Switch>
-      </Router>
-    </div>
-  );
-  
+    <RecoilRoot>
+      <ThemeProvider theme={Theme}>
+        <GlobalStyle />
+          <div className="App">
+            <Router>
+            {/* <MainPage /> */}
+            <Switch>
+              <Route path="/" exact component={Pages.Main} />
+              <Route path="/signin" exact component={Pages.Signin} />
+            </Switch>
+            </Router>
+          </div>
+      </ThemeProvider>
+    </RecoilRoot>
+  )
 }
 
 export default App;
