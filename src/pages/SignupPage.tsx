@@ -1,29 +1,44 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from "styled-components";
 import Logo from 'assets/images/logo'
 
 import API from '../utils/api';
+import { clearTimeout } from 'timers';
 
 const SignupPage = () => {
-
+  const validateInputTimer = useRef<any>(null);
   const [signupState, setSignupState] = useState<any>({
     oauth_type: "NONE",
     avatar_url: "",
     social_service_id: ""
   });
-
   const [signupValidation, setSignupValidation] = useState<any>({
     email: "",
     nickname: ""
   })
 
   const handleChangeInput = (payload: any) => {
+    const [key, value] = Object.entries(payload)[0];
+    if (["email", "nickname"].includes(key as any)) {
+      handleValidateInput(payload);
+    }
     setSignupState((prev : any) => ({...prev, ...payload}))
   }
 
   const handleClickSignup = () => {
     API.post.signUp({data: signupState});
+  }
+
+  const handleValidateInput = (payload: any) => {
+    console.log("validate", payload);
+    if (validateInputTimer.current) {
+      window.clearTimeout(validateInputTimer.current);
+    }
+    validateInputTimer.current = window.setTimeout(() => {
+      API.get.validate({data: payload});
+      validateInputTimer.current = null;
+    }, 1000);
   }
 
   return (
