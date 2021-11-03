@@ -7,7 +7,7 @@ const createPostProtocol = ({ data }) => ({
 const users = ({ END_POINT }) => ({
   get: {
     validate: async ({ data }) => {
-      const [key, value] = Object.entries(data);
+      const [key, value] = Object.entries(data)[0];
       const response = await fetch(`${END_POINT}/users/validate/${key}?${key}=${value}`);
       return response;
     }
