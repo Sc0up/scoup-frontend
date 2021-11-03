@@ -1,7 +1,7 @@
-import MainPage from './MainPage';
-import SigninPage from './SigninPage';
+import Main from './MainPage';
+import Signin from './SigninPage';
+import Signup from './SignupPage';
 
 export default {
-  Main: MainPage,
-  Signin: SigninPage
+  Main, Signin, Signup
 }

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled, { css } from "styled-components";
 import Logo from 'assets/images/logo'
 
@@ -15,7 +16,7 @@ const SigninPage = () => {
             <Button onClick={() => (window.location as any) = "https://www.figma.com/proto/VsiKqsBVIsZKXGRtoFjVq4/%EC%8A%A4%EC%BF%B1-%EB%94%94%EC%9E%90%EC%9D%B8?node-id=514%3A10380&scaling=min-zoom&page-id=59%3A2"}> 로그인 </Button>    
           </FormArea>
           <FindArea>
-            비밀번호 찾기 | 회원가입
+            비밀번호 찾기 | <Link to={'/signup'}>회원가입</Link>
           </FindArea>
           <SocialArea>
             <Hr />
