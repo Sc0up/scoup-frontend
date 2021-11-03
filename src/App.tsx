@@ -22,7 +22,8 @@ function App() {
             {/* <MainPage /> */}
             <Switch>
               <Route path="/" exact component={Pages.Main} />
-              <Route path="/signin" exact component={Pages.Signin} />
+              <Route path="/signin" component={Pages.Signin} />
+              <Route path="/signup" component={Pages.Signup} />
             </Switch>
             </Router>
           </div>
