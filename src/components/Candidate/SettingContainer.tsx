@@ -1,31 +1,22 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import styled from "styled-components";
-import EndContainer from "./EndContainer/EndContainer";
-import {
-  dataInitialState,
-  settingsContext,
-  settingsReducer,
-} from "./reducer/SettingsReducer";
-import StartContainer from "./StartContainer/StartContainer";
-import { TempContext } from "./TempSchedule";
+import SelectFormat from "../SelectFormat/SelectFormat";
 
 const SettingContainer = () => {
-  const [state, dispatch] = useReducer(settingsReducer, dataInitialState);
-  const { startDate, endDate } = state;
-  const { tempCandidate, setTempCandidate } = useContext(TempContext);
-  const AddList = () => {
-    setTempCandidate([...tempCandidate, { start: startDate, end: endDate }]);
-  };
+  const today = new Date();
+  const [startDate, setStartDate] = useState(today);
+  console.log(today.getFullYear() + 10);
   return (
-    <settingsContext.Provider value={{ state, dispatch }}>
-      <SettingContainerWrapper>
-        <ListWrapper>
-          <StartContainer />
-          <EndContainer />
-        </ListWrapper>
-        <Btn onClick={AddList}>후보추가</Btn>
-      </SettingContainerWrapper>
-    </settingsContext.Provider>
+    <SettingContainerWrapper>
+      <ListWrapper>
+        <SelectFormat
+          year={true}
+          range={[today.getFullYear(), today.getFullYear() + 10]}
+          value={today.getFullYear()}
+        />
+      </ListWrapper>
+      <Btn>후보추가</Btn>
+    </SettingContainerWrapper>
   );
 };
 
